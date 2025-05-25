@@ -22,7 +22,6 @@ def create_app(test_config=None):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Импортируем и регистрируем маршруты
     from .routes import bp as routes_bp
     app.register_blueprint(routes_bp)
 

@@ -33,7 +33,7 @@ def get_battle_pair(quiz_id):
 
         item_ids = [item.id for item in items]
         random.shuffle(item_ids)
-        king = item_ids.pop()  # Выбираем первого "царя"
+        king = item_ids.pop() 
         active_games[quiz_id] = {
             'king': king,
             'opponents': item_ids,
@@ -43,7 +43,6 @@ def get_battle_pair(quiz_id):
     game['pair'] += 1
 
     if not game['opponents']:
-        # Все бои закончились — финал
         final_winner = QuizItem.query.get(game['king'])
         if final_winner:
             final_winner.wins += 1
@@ -72,10 +71,9 @@ def get_battle_pair(quiz_id):
             'image_url': opponent_item.image_url,
         })
 
-    # Создаем батл-раунд для фиксации
     battle = BattleRound(
         quiz_id=quiz_id,
-        round_number=1,  # В царе горы у нас один бесконечный раунд
+        round_number=1, 
         item1_id=king_item.id,
         item2_id=opponent_item.id
     )
@@ -118,12 +116,10 @@ def vote():
             loser.losses += 1
         db.session.commit()
 
-        # Логика царя горы:
         quiz_id = battle.quiz_id
         if quiz_id in active_games:
             game = active_games[quiz_id]
             if winner_id != game['king']:
-                # Если победил новый — он становится королем
                 game['king'] = winner_id
 
         return jsonify({'status': 'success'})
@@ -176,13 +172,11 @@ def quiz_results(quiz_id):
         'image_url': item.image_url,
         'wins': item.wins,
         'losses': item.losses,
-        'score_diff': item.wins - item.losses  # Разница между победами и поражениями
+        'score_diff': item.wins - item.losses  
     } for item in items]
 
-    # Сортируем по разнице побед и поражений, чтобы получить рейтинговые позиции
     results.sort(key=lambda x: x['wins'], reverse=True)
 
-    # Топ-3 картинок из общего зачета (по разнице побед и поражений)
     top_3_total = sorted(results, key=lambda x: x['wins'], reverse=True)[:3]
     return jsonify({
         "top_3_total": top_3_total
