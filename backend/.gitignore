@@ -1,0 +1,66 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.venv/
+ENV/
+env/
+*.env
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+pip-wheel-metadata/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Pytest
+.cache/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# PyCharm project files
+.idea/
+
+# VSCode settings (if applicable)
+.vscode/
+
+# Logs
+*.log
+
+# Database or app-generated files
+*.sqlite3
+instance/
+*.db
+*.db-journal
+
+# Flask specific
+*.pid
+*.pyo
+
+# MacOS
+.DS_Store
+
+# System
+Thumbs.db
