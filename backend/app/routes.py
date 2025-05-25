@@ -172,11 +172,13 @@ def quiz_results(quiz_id):
         'image_url': item.image_url,
         'wins': item.wins,
         'losses': item.losses,
-        'score_diff': item.wins - item.losses  
+        'score_diff': item.wins - item.losses  # Разница между победами и поражениями
     } for item in items]
 
+    # Сортируем по разнице побед и поражений, чтобы получить рейтинговые позиции
     results.sort(key=lambda x: x['wins'], reverse=True)
 
+    # Топ-3 картинок из общего зачета (по разнице побед и поражений)
     top_3_total = sorted(results, key=lambda x: x['wins'], reverse=True)[:3]
     return jsonify({
         "top_3_total": top_3_total
