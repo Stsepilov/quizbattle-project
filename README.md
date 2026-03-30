@@ -107,9 +107,3 @@ Nginx используется как reverse proxy:
 - проверка начальных данных и связей.
 
 Также настроен workflow GitHub Actions для автоматического запуска backend-тестов.
-
-## Ссылка на репозиторий
-
-Репозиторий проекта:
-
-**https://github.com/Stsepilov/quizbattle-project**
